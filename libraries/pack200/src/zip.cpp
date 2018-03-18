@@ -331,9 +331,6 @@ extern "C" struct tm *gmtime_r(const time_t *, struct tm *);
 #define gmtime_r(t, s) gmtime(t)
 #endif
 */
-// This part should be commented out -----------------<<<<<<<<<<<<<<<<<<<<<< My own change
-#define gmtime_r(t, s) gmtime(t)
-
 /*
  * Return the Unix time in DOS format
  */
@@ -347,7 +344,7 @@ uint32_t jar::get_dostime(int modtime)
 	time_t t = modtime;
 	struct tm sbuf;
 	(void)memset((void *)&sbuf, 0, sizeof(sbuf));
-    struct tm *s = gmtime_r(&t, &sbuf);
+	struct tm *s = gmtime_r(&t, &sbuf);
 	modtime_cache = modtime;
 	dostime_cache =
 		dostime(s->tm_year + 1900, s->tm_mon + 1, s->tm_mday, s->tm_hour, s->tm_min, s->tm_sec);
